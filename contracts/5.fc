@@ -22,7 +22,7 @@
   while (i != n) {
     c = b;
     if (i < 369) {
-      b = a+b;
+      b = a + b;
     }
     a = c;
     i = i+1;
@@ -33,7 +33,7 @@
     t~tpush(a);
     c = b;
     if (i < 369) {
-      b = a+b;
+      b = a + b;
     }
     a = c;
     i = i+1;
