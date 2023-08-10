@@ -29,7 +29,7 @@
   }
 
   tuple t = empty_tuple();
-  while (i != n+k) {
+  while (i != n + k) {
     t~tpush(a);
     c = b;
     if (i < 369) {
