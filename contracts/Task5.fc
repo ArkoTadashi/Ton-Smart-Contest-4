@@ -33,7 +33,6 @@
     b = a+b;
     a = c;
     i = i+1;
-    
   }
   
   return t;
