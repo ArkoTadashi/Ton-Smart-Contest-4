@@ -27,9 +27,9 @@
   }
 
   tuple t = empty_tuple();
-  while (i+1 != n+k) {
+  while (i != n+k) {
     t~tpush(a);
-    if (i+1 <= n+k-1) {
+    if (i < n+k-1) {
       int c = b;
       b = a+b;
       a = c;
