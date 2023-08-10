@@ -29,11 +29,11 @@
   tuple t = empty_tuple();
   while (i != n+k) {
     t~tpush(a);
+    int c = b;
     if (i < n+k-1) {
-      int c = b;
       b = a+b;
-      a = c;
     }
+    a = c;
     
     i = i+1;
   }
