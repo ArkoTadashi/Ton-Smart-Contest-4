@@ -18,7 +18,12 @@
 (tuple) matrix_multiplier(tuple matrixA, tuple matrixB) method_id {
   int n = matrixA.tlen();
   int m = matrixA.first().tlen();
+  int q = matrixB.tlen();
   int p = matrixB.first().tlen();
+
+  if (m != q) {
+    return null();
+  }
 
   tuple ans = empty_tuple();
   int i = 0; int j = 0; int k = 0;
