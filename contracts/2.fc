@@ -9,14 +9,16 @@
   After calculating the result matrix, the function should return final result (as tuple).
 -}
 
+(int) tlen (tuple t) asm "TLEN";
+
 () recv_internal() {
 }
 
 ;; testable
 (tuple) matrix_multiplier(tuple matrixA, tuple matrixB) method_id {
-  int n = matrixA.tuple_length();
-  int m = matrixA.first().tuple_length();
-  int p = matrixB.first().tuple_length();
+  int n = matrixA.tlen();
+  int m = matrixA.first().tlen();
+  int p = matrixB.first().tlen();
 
   tuple ans = empty_tuple();
   int i = 0; int j = 0; int k = 0;
