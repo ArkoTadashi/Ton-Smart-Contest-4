@@ -28,7 +28,7 @@
 
   tuple t = empty_tuple();
   while(i != n+k) {
-    t.tpush(a);
+    t~tpush(a);
     int c = b;
     b = a+b;
     a = c;
