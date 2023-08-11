@@ -18,24 +18,17 @@ int slice_hash(slice s) asm "HASHSU";
 ;; testable
 (cell) find_branch_by_hash(int hash, cell tree) method_id {
   tuple stack = null();
-  ;; bring the main cell into the stack to process it in the loop
-  slice s = tree.begin_parse();  
-  if (slice_hash(s) == hash) {
+  ;;slice s = tree.begin_parse();  
+  if (cell_hash(tree) == hash) {
     return tree;
   }
   stack~push_back(tree);
-  ;; do it until stack is not null
   while (~ stack.is_null()) {
-      ;; get the cell from the stack and convert it to a slice to be able to process it
       cell pp = stack~pop_back();
-      slice s = pp.begin_parse();
-
-      ;; do something with s data
-
-      ;; if the current slice has any refs, add them to stack
-      repeat (s.slice_refs()) {
+      ;;slice s = pp.begin_parse();
+      repeat (pp.cell_refs()) {
           stack~push_back(s~load_ref());
-          if (slice_hash(s~load_ref().begin_parse()) == hash) {
+          if (cell_hash(s~load_ref()) == hash) {
             return pp;
           }
       }
