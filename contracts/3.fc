@@ -24,7 +24,8 @@
   
   cell p = linked_list;
   while (~ cell_null?(p~load_ref())) {
-      cell q = p~load_ref();
+      slice x = p.begin_parse();
+      cell q = x~load_ref();
       
   }
 
