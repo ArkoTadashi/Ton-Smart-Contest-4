@@ -23,7 +23,7 @@
 (cell) find_and_replace(int flag, int value, cell linked_list) method_id {
   
   cell p = linked_list;
-  if (1) {
+  if (~ cell_null?(p)) {
       ;;slice x = p.begin_parse();
       ;;cell q = x~load_ref();
       
