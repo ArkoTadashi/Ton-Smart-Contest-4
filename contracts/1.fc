@@ -18,16 +18,16 @@ int cell_hash(cell c) asm "HASHCU";
 ;; testable
 (cell) find_branch_by_hash(int hash, cell tree) method_id {
   tuple stack = null();
-    stack~push_back(c);
-    while (~ stack.is_null()) {
-        cell pp = stack~pop_back();
-        if (cell_hash(pp) == hash) {
-          return pp;
-        }
-        slice s = pp.begin_parse();
-        repeat (s.slice_refs()) {
-            stack~push_back(s~load_ref());
-        }
+  stack~push_back(c);
+  while (~ stack.is_null()) {
+    cell pp = stack~pop_back();
+    if (cell_hash(pp) == hash) {
+      return pp;
     }
+    slice s = pp.begin_parse();
+    repeat (s.slice_refs()) {
+      stack~push_back(s~load_ref());
+    }
+  }
   return begin_cell().end_cell();
 }
