@@ -22,12 +22,6 @@
 ;; testable
 (cell) find_and_replace(int flag, int value, cell linked_list) method_id {
   
-  cell p = linked_list;
-  while (~ p~load_ref().is_null()) {
-      cell q = p~load_ref();
-      
-  }
-
   return linked_list;
 }
 
