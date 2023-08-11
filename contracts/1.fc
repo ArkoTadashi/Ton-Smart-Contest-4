@@ -10,7 +10,6 @@ forall X -> int is_null (X x) asm "ISNULL";
 forall X -> (tuple, ()) push_back (tuple tail, X head) asm "CONS";
 forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
 int cell_hash(cell c) asm "HASHCU";
-int slice_hash(slice s) asm "HASHSU";
 
 () recv_internal() {
 }
@@ -24,7 +23,7 @@ int slice_hash(slice s) asm "HASHSU";
   stack~push_back(tree);
   while (~ stack.is_null()) {
       cell pp = stack~pop_back();
-      repeat (pp.cell_refs()) {
+      repeat (pp~cell_refs()) {
           stack~push_back(s~load_ref());
           if (cell_hash(s~load_ref()) == hash) {
             return pp;
