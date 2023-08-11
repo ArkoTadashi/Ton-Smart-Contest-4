@@ -24,8 +24,8 @@ int cell_hash(cell c) asm "HASHCU";
   while (~ stack.is_null()) {
       cell pp = stack~pop_back();
       repeat (pp~cell_refs()) {
-          stack~push_back(s~load_ref());
-          if (cell_hash(s~load_ref()) == hash) {
+          stack~push_back(pp~load_ref());
+          if (cell_hash(pp~load_ref()) == hash) {
             return pp;
           }
       }
