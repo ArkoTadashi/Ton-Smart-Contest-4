@@ -6,10 +6,40 @@
   this branch should be returned. Return empty cell if the branch is not found.
 -}
 
+forall X -> int is_null (X x) asm "ISNULL";
+forall X -> (tuple, ()) push_back (tuple tail, X head) asm "CONS";
+forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
+int cell_hash(cell c) asm "HASHCU";
+int slice_hash(slice s) asm "HASHSU";
+
 () recv_internal() {
 }
 
 ;; testable
 (cell) find_branch_by_hash(int hash, cell tree) method_id {
+  tuple stack = null();
+  ;; bring the main cell into the stack to process it in the loop
+  slice s = tree.begin_parse();  
+  if (slice_hash(s) == hash) {
+    return tree;
+  }
+  stack~push_back(tree);
+  ;; do it until stack is not null
+  while (~ stack.is_null()) {
+      ;; get the cell from the stack and convert it to a slice to be able to process it
+      cell pp = stack~pop_back();
+      slice s = pp.begin_parse();
+
+      ;; do something with s data
+
+      ;; if the current slice has any refs, add them to stack
+      repeat (s.slice_refs()) {
+          stack~push_back(s~load_ref());
+          if (slice_hash(s~load_ref().begin_parse()) == hash) {
+            return pp;
+          }
+      }
+  }
+
   return begin_cell().end_cell();
 }
