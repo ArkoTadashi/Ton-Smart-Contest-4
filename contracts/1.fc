@@ -7,7 +7,7 @@
 -}
 
 
-forall X -> int is_null (X x) asm "ISNULL";
+(int) tlen (tuple t) asm "TLEN";
 
 () recv_internal() {
 }
@@ -16,7 +16,7 @@ forall X -> int is_null (X x) asm "ISNULL";
 (cell) find_branch_by_hash(int hash, cell tree) method_id {
   tuple stack = null();
   stack~cons(c);
-  while (~ stack.is_null()) {
+  while (stack.tlen() != 0) {
     cell pp = stack~uncons();
     if (cell_hash(pp) == hash) {
       return pp;
