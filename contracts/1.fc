@@ -18,13 +18,13 @@
   stack~cons(c);
   while (stack.tlen() != 0) {
     cell pp = stack~uncons();
-    if (cell_hash(pp) == hash) {
-      return pp;
-    }
-    slice s = pp.begin_parse();
-    repeat (s.slice_refs()) {
-      stack~cons(s~load_ref());
-    }
+    ;; if (cell_hash(pp) == hash) {
+    ;;   return pp;
+    ;; }
+    ;; slice s = pp.begin_parse();
+    ;; repeat (s.slice_refs()) {
+    ;;   stack~cons(s~load_ref());
+    ;; }
   }
   return begin_cell().end_cell();
 }
