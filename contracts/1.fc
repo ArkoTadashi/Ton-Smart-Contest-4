@@ -15,16 +15,16 @@
 ;; testable
 (cell) find_branch_by_hash(int hash, cell tree) method_id {
   tuple stack = empty_tuple();
-  stack~cons(c);
+  stack~cons(tree);
   while (stack.tlen() != 0) {
-    ;; cell pp = stack~uncons();
-    ;; if (cell_hash(pp) == hash) {
-    ;;   return pp;
-    ;; }
-    ;; slice s = pp.begin_parse();
-    ;; repeat (s.slice_refs()) {
-    ;;   stack~cons(s~load_ref());
-    ;; }
+    cell pp = stack~uncons();
+    if (cell_hash(pp) == hash) {
+      return pp;
+    }
+    slice s = pp.begin_parse();
+    repeat (s.slice_refs()) {
+      stack~cons(s~load_ref());
+    }
   }
   return begin_cell().end_cell();
 }
