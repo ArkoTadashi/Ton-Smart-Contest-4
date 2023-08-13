@@ -32,7 +32,7 @@ forall X -> (tuple, (X)) pop_back (tuple t) asm "UNCONS";
     }
   }
 
-  if (~ cell_null?(ans)) {
+  if (ans != null()) {
     return ans;
   }
   else {
